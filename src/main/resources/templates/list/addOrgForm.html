@@ -8,7 +8,7 @@
     <title>Add new Organization</title>
 </head>
 <body>
-    <form action="/list/org/add" method="post">
+    <form th:action="@{/organizations/add/}" method="post">
         <input type="hidden" name="id" id="id">
         <label for="nameOfOrganization">Name of organization</label>
         <input type="text" name="nameOfOrganization" id="nameOfOrganization">
