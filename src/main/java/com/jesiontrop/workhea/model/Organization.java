@@ -19,7 +19,7 @@ public class Organization {
     @NotBlank(message = "Organization Number is required")
     private String organizationNumber;
 
-    @OneToMany(targetEntity = Offer.class)
+    @OneToMany(targetEntity = Offer.class, cascade = CascadeType.ALL)
     private List<Offer> offers = new ArrayList<>();
 
     public void addOffer(Offer offer) {
