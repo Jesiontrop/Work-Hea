@@ -15,73 +15,71 @@ import java.util.List;
 
 @Controller
 @Slf4j
-@RequestMapping("/list")
-public class ListController {
+@RequestMapping("/organizations")
+public class OrganizationsController {
 
     OrganizationRepository organizationRepository;
     OfferRepository offerRepository;
 
     @Autowired
-    public ListController(OrganizationRepository organizationRepository, OfferRepository offerRepository) {
+    public OrganizationsController(OrganizationRepository organizationRepository, OfferRepository offerRepository) {
         this.organizationRepository = organizationRepository;
         this.offerRepository = offerRepository;
     }
 
-    @GetMapping("/org")
+    @GetMapping
     public String showOrgList(@RequestParam(defaultValue = "1") int page, Model model) {
         List<Organization> orgs = new ArrayList<>();
         organizationRepository.findAll().forEach(orgs::add);
 
-        model.addAttribute("orgList", orgs);
+        model.addAttribute("organizationList", orgs);
 
-        return "/list/org";
+        return "/list/organizationList";
     }
 
-    @GetMapping("/org/add")
+    @GetMapping("/add")
     public String addOrganization(Model model) {
         return "/list/addOrgForm";
     }
 
-    @PostMapping("/org/add")
+    @PostMapping("/add")
     public String processAddOrganization(@ModelAttribute Organization org) {
         organizationRepository.save(org);
 
-        return "redirect:/list/org";
+        return "redirect:/organizations";
     }
 
-    @GetMapping("/org/{id}/offers")
+    @GetMapping("/{id}/offers")
     public String showOrgOffers(@PathVariable("id") Long id, Model model) {
         Organization org = organizationRepository.findById(id).orElse(null);
         if (org == null)
-            return "redirect:/list/org";
+            return "redirect:/organizations";
 
         List<Offer> offers = org.getOffers();
-        model.addAttribute("idOrg", org.getId());
         model.addAttribute("offers", offers);
 
-        return "/list/orgOffers";
+        return "/list/organizationOffers";
     }
 
-    @GetMapping("/org/{id}/offers/add")
+    @GetMapping("/{id}/offers/add")
     public String addOrgOffer(@PathVariable("id") Long id, Model model) {
         Organization org = organizationRepository.findById(id).orElse(null);
         if (org == null)
-            return "redirect:/list/org";
-
-        model.addAttribute("idOrg", org.getId());
+            return "redirect:/organizations";
 
         return "/list/addOrgOffersForm";
     }
 
-    @PostMapping("/org/{id}/offers/add")
+    @PostMapping("/{id}/offers/add")
     public String processAddOrgOffer(@PathVariable("id") Long id, @ModelAttribute Offer offer) {
         Organization org = organizationRepository.findById(id).orElse(null);
         if (org == null)
-            return "redirect:/list/org";
+            return "redirect:/organizations";
 
         Offer save =  offerRepository.save(offer);
         org.addOffer(save);
+        organizationRepository.save(org);
 
-        return "redirect:/list" + id.toString() + "/offers";
+        return "redirect:/organizations/" + id.toString() + "/offers";
     }
 }
