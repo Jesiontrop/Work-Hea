@@ -14,20 +14,22 @@
             <th scope="col">Name of organization</th>
             <th scope="col">Organization number</th>
             <th scope="col">Count of offer</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
-        <div th:each="org : ${orgList}">
+        <div th:each="org : ${organizationList}">
             <tr>
                 <td><span th:text="${org.nameOfOrganization}">Name of organization</span></td>
                 <td><span th:text="${org.organizationNumber}">Organization number</span></td>
                 <td><span th:text="${org.offers.size()}">Count of offer</span></td>
+                <td><a th:href="@{/organizations/{id}/offers(id = ${org.id})}">Offers</a></td>
             </tr>
         </div>
     </tbody>
 </table>
 
-<p align="middle"><a href="/list/org/add" >Add new organization</a></p>
+<p align="middle"><a th:href="@{/organizations/add}" >Add new organization</a></p>
 
 </body>
 </html>
