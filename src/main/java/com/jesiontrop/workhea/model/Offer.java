@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
@@ -16,7 +17,7 @@ public class Offer {
 
     @NotBlank(message = "Vacancy title is required")
     private String vacancyTitle;
-    @NotBlank(message = "Salary is required")
+    @NotNull(message = "Salary is required")
     private int salary;
 
     private Date placedAt;
