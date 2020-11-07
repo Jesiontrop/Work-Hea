@@ -26,4 +26,7 @@ public class Offer {
     void placedAt() {
         this.placedAt = new Date();
     }
+
+    @ManyToOne(targetEntity = Organization.class)
+    private Organization organization;
 }
