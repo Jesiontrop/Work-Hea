@@ -18,7 +18,7 @@ public class Offer {
     @NotBlank(message = "Vacancy title is required")
     private String vacancyTitle;
     @NotNull(message = "Salary is required")
-    private int salary;
+    private Integer salary;
 
     private Date placedAt;
 
