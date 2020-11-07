@@ -76,7 +76,9 @@ public class OrganizationsController {
         if (org == null)
             return "redirect:/organizations";
 
+        offer.setOrganization(org);
         Offer save =  offerRepository.save(offer);
+
         org.addOffer(save);
         organizationRepository.save(org);
 
