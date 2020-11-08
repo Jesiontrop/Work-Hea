@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <title>Information About Organization</title>
+</head>
+<body>
+
+<table class="table w-50">
+    <thead>
+    <tr>
+        <th scope="col" colspan="2" class="align-center">Information About Organization</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th class="table-active w-25">Name of organization</th>
+            <td><span th:text="${organization.nameOfOrganization}">Name of organization</span></td>
+        </tr>
+        <tr>
+            <th class="table-active w-25">Organization number</th>
+            <td><span th:text="${organization.organizationNumber}">Organization number</span></td>
+        </tr>
+        <tr>
+            <th class="table-active w-25">Count of offer</th>
+            <td><span th:text="${organization.offers.size()}">Count of offer</span></td>
+        </tr>
+        <tr class="table-active">
+            <td colspan="2" class="align-center">
+                <form th:action="@{/organizations/{id}/offers(id = ${organization.id})}">
+                    <button type="submit" class="btn btn-info">List of Offers</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
