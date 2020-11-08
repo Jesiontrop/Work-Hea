@@ -10,6 +10,17 @@
 </head>
 <body>
 
+    <div class="w-100 p-3">
+        <form th:action="@{/search/vacancy}">
+                <div class="input-group mb-3">
+                    <input type="search" name="q" class="w-50">
+                    <div class="input-group-append w-20">
+                        <input type="submit" value="Search">
+                    </div>
+                </div>
+        </form>
+    </div>
+
     <table class="table">
         <thead class="thead-dark">
         <tr>
