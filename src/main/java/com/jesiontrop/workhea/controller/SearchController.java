@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -26,11 +27,15 @@ public class SearchController {
 
     @GetMapping("/vacancy")
     public String showVacancy(@RequestParam(defaultValue = "") String q, Model model) {
-        List<Offer> offers = offerRepository.findAllByVacancyTitleContains(q);
-        boolean hasSearchError = false;
+        List<Offer> offers = new ArrayList<>();
+        if (!q.equals(""))
+            offers = offerRepository.findAllByVacancyTitleContains(q);
+        else
+            offerRepository.findAll().forEach(offers::add);
 
         final String searchError = "No results found for \"" + q + "\"";
 
+        boolean hasSearchError = false;
         if (offers.size() == 0)
             hasSearchError = true;
 
