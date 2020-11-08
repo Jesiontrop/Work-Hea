@@ -43,7 +43,6 @@ public class SearchController {
         model.addAttribute("hasSearchError", hasSearchError);
         model.addAttribute("offers", offers);
 
-
-        return "/search/vacancy";
+        return "/search/vacancies";
     }
 }
