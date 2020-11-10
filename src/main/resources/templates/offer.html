@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <title>Information About Offer</title>
+</head>
+<body>
+
+<table class="table w-50">
+    <thead>
+    <tr>
+        <th scope="col" colspan="2" class="align-center">Information About Offer</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th class="table-active w-25">Vacancy Title</th>
+        <td><span th:text="${offer.vacancyTitle}">Vacancy Title</span></td>
+    </tr>
+    <tr>
+        <th class="table-active w-25">Salary</th>
+        <td><span th:text="${offer.salary}">Salary</span></td>
+    </tr>
+    <tr>
+        <th class="table-active w-25">Date</th>
+        <td><span th:text="${offer.placedAt.toLocaleString()}">Date</span></td>
+    </tr>
+    <tr class="table-active">
+        <td colspan="2" class="align-center">
+            <form th:action="@{/organizations/{id}(id = ${offer.organization.id})}">
+                <button type="submit" class="btn btn-info">Organization</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
