@@ -1,7 +1,9 @@
 package com.jesiontrop.workhea.controller;
 
 import com.jesiontrop.workhea.model.Offer;
+import com.jesiontrop.workhea.model.Organization;
 import com.jesiontrop.workhea.repository.OfferRepository;
+import com.jesiontrop.workhea.repository.OrganizationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,10 +21,12 @@ import java.util.List;
 public class SearchController {
 
     private final OfferRepository offerRepository;
+    private final OrganizationRepository organizationRepository;
 
     @Autowired
-    public SearchController(OfferRepository offerRepository) {
+    public SearchController(OfferRepository offerRepository, OrganizationRepository organizationRepository) {
         this.offerRepository = offerRepository;
+        this.organizationRepository = organizationRepository;
     }
 
     @GetMapping("/vacancy")
@@ -44,5 +48,26 @@ public class SearchController {
         model.addAttribute("offers", offers);
 
         return "/search/vacancies";
+    }
+
+    @GetMapping("/organization")
+    public String showOrganization(@RequestParam(defaultValue = "") String q, Model model) {
+        List<Organization> organizationList = new ArrayList<>();
+        if (!q.equals(""))
+            organizationList = organizationRepository.findAllByNameOfOrganizationContains(q);
+        else
+            organizationRepository.findAll().forEach(organizationList::add);
+
+        final String searchError = "No results found for \"" + q + "\"";
+
+        boolean hasSearchError = false;
+        if (organizationList.size() == 0)
+            hasSearchError = true;
+
+        model.addAttribute("searchError", searchError);
+        model.addAttribute("hasSearchError", hasSearchError);
+        model.addAttribute("organizationList", organizationList);
+
+        return "/search/organizationList";
     }
 }
