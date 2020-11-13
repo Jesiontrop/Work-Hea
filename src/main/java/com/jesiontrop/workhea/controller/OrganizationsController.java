@@ -27,16 +27,6 @@ public class OrganizationsController {
         this.offerRepository = offerRepository;
     }
 
-    @GetMapping
-    public String showOrganizationList(@RequestParam(defaultValue = "1") int page, Model model) {
-        List<Organization> organizations = new ArrayList<>();
-        organizationRepository.findAll().forEach(organizations::add);
-
-        model.addAttribute("organizationList", organizations);
-
-        return "/list/organizationList";
-    }
-
     @GetMapping("/add")
     public String addOrganization(Model model) {
         return "/list/addOrgForm";
