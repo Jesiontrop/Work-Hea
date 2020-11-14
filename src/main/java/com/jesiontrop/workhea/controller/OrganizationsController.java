@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -84,5 +83,11 @@ public class OrganizationsController {
         organizationRepository.save(organization);
 
         return "redirect:/organizations/" + id.toString() + "/offers";
+    }
+
+    @GetMapping("/error/notfound")
+    public String errorNotFoundOffer() {
+
+        return "error/errorNotFoundOffer";
     }
 }
