@@ -35,14 +35,14 @@ public class OrganizationsController {
     public String processAddOrganization(@ModelAttribute Organization org) {
         organizationRepository.save(org);
 
-        return "redirect:/organizations";
+        return "redirect:/search/organization";
     }
 
     @GetMapping("/{id}")
     public String showOrganization(@PathVariable("id") Long id, Model model) {
         Organization organization = organizationRepository.findById(id).orElse(null);
         if (organization == null)
-            return "redirect:/organizations";
+            return "redirect:/organizations/error/notfound";
 
         model.addAttribute("organization", organization);
 
@@ -53,7 +53,7 @@ public class OrganizationsController {
     public String showOrganizationOffers(@PathVariable("id") Long id, Model model) {
         Organization organization = organizationRepository.findById(id).orElse(null);
         if (organization == null)
-            return "redirect:/organizations";
+            return "redirect:/organizations/error/notfound";
 
         List<Offer> offers = organization.getOffers();
         model.addAttribute("offers", offers);
@@ -65,7 +65,7 @@ public class OrganizationsController {
     public String addOrgOffer(@PathVariable("id") Long id, Model model) {
         Organization organization = organizationRepository.findById(id).orElse(null);
         if (organization == null)
-            return "redirect:/organizations";
+            return "redirect:/organizations/error/notfound";
 
         return "/list/addOrgOffersForm";
     }
