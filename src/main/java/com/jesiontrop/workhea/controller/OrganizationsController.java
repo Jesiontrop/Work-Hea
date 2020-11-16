@@ -28,7 +28,7 @@ public class OrganizationsController {
 
     @GetMapping("/add")
     public String addOrganization(Model model) {
-        return "/list/addOrgForm";
+        return "/organization/addOrgForm";
     }
 
     @PostMapping("/add")
@@ -58,7 +58,7 @@ public class OrganizationsController {
         List<Offer> offers = organization.getOffers();
         model.addAttribute("offers", offers);
 
-        return "/list/organizationOffers";
+        return "/organization/organizationOffers";
     }
 
     @GetMapping("/{id}/offers/add")
@@ -67,14 +67,14 @@ public class OrganizationsController {
         if (organization == null)
             return "redirect:/organizations/error/notfound";
 
-        return "/list/addOrgOffersForm";
+        return "/organization/addOrgOffersForm";
     }
 
     @PostMapping("/{id}/offers/add")
     public String processAddOrgOffer(@PathVariable("id") Long id, @ModelAttribute Offer offer) {
         Organization organization = organizationRepository.findById(id).orElse(null);
         if (organization == null)
-            return "redirect:/organizations";
+            return "redirect:/search/organization";
 
         offer.setOrganization(organization);
         Offer save =  offerRepository.save(offer);
