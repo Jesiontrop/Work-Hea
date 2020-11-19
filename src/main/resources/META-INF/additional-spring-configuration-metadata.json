@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "workhea.offer.page-size",
+      "type": "java.lang.String",
+      "description": "Count offers in the web page."
+    },
+    {
+      "name": "workhea.organization.page-size",
+      "type": "java.lang.String",
+      "description": "Count organization in the web page."
+    }
+  ] }
