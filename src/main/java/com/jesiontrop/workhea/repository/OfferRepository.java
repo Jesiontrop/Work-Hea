@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 public interface OfferRepository extends CrudRepository<Offer, Long> {
@@ -14,4 +15,10 @@ public interface OfferRepository extends CrudRepository<Offer, Long> {
     @Query( value = "SELECT * FROM offer WHERE MATCH (vacancy_title) AGAINST (:q)",
             nativeQuery = true)
     List<Offer> findAllByVacancyTitleContains(@Param("q") String q);
+
+    @Modifying
+    @Query( value = "SELECT * FROM offer WHERE MATCH (vacancy_title) AGAINST (:q)",
+            countQuery = "SELECT count(*) FROM offer WHERE MATCH (vacancy_title) AGAINST (:q)",
+        nativeQuery = true)
+    List<Offer> findAllByVacancyTitleContains(@Param("q") String q, Pageable pageable);
 }
