@@ -2,6 +2,8 @@ package com.jesiontrop.workhea.controller;
 
 import com.jesiontrop.workhea.model.Offer;
 import com.jesiontrop.workhea.model.Organization;
+import com.jesiontrop.workhea.props.OfferProps;
+import com.jesiontrop.workhea.props.OrganizationProps;
 import com.jesiontrop.workhea.repository.OfferRepository;
 import com.jesiontrop.workhea.repository.OrganizationRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -20,10 +22,14 @@ public class OrganizationsController {
     OrganizationRepository organizationRepository;
     OfferRepository offerRepository;
 
-    @Autowired
-    public OrganizationsController(OrganizationRepository organizationRepository, OfferRepository offerRepository) {
+    OrganizationProps organizationProps;
+    OfferProps offerProps;
+
+    public OrganizationsController(OrganizationRepository organizationRepository, OfferRepository offerRepository, OrganizationProps organizationProps, OfferProps offerProps) {
         this.organizationRepository = organizationRepository;
         this.offerRepository = offerRepository;
+        this.organizationProps = organizationProps;
+        this.offerProps = offerProps;
     }
 
     @GetMapping("/add")
