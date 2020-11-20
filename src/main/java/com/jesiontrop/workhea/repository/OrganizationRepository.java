@@ -11,6 +11,8 @@ import java.util.List;
 
 public interface OrganizationRepository extends CrudRepository<Organization, Long> {
 
+    Iterable<Organization> findAll(Pageable pageable);
+
     //MySql request
     @Modifying
     @Query( value = "SELECT * FROM organization WHERE MATCH (name_of_organization) AGAINST (:q)",
@@ -20,6 +22,6 @@ public interface OrganizationRepository extends CrudRepository<Organization, Lon
     //MySql request
     @Query( value = "SELECT * FROM organization WHERE MATCH (name_of_organization) AGAINST (:q)",
             countQuery = "SELECT count(*) FROM organization WHERE MATCH (name_of_organization) AGAINST (:q)",
-        nativeQuery = true)
+            nativeQuery = true)
     List<Organization> findAllByNameOfOrganizationContains(@Param("q") String q, Pageable pageable);
 }
