@@ -8,6 +8,8 @@ import com.jesiontrop.workhea.repository.OfferRepository;
 import com.jesiontrop.workhea.repository.OrganizationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,11 +40,13 @@ public class SearchController {
 
     @GetMapping("/vacancy")
     public String showVacancy(@RequestParam(defaultValue = "") String q, Model model) {
+        Pageable offerPageRequest = PageRequest.of(0, offerProps.getPageSize());
+
         List<Offer> offers = new ArrayList<>();
         if (!q.equals(""))
-            offers = offerRepository.findAllByVacancyTitleContains(q);
+            offers = offerRepository.findAllByVacancyTitleContains(q, offerPageRequest);
         else
-            offerRepository.findAll().forEach(offers::add);
+            offerRepository.findAll(offerPageRequest).forEach(offers::add);
 
         final String searchError = "No results found for \"" + q + "\"";
 
