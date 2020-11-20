@@ -2,6 +2,8 @@ package com.jesiontrop.workhea.controller;
 
 import com.jesiontrop.workhea.model.Offer;
 import com.jesiontrop.workhea.model.Organization;
+import com.jesiontrop.workhea.props.OfferProps;
+import com.jesiontrop.workhea.props.OrganizationProps;
 import com.jesiontrop.workhea.repository.OfferRepository;
 import com.jesiontrop.workhea.repository.OrganizationRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -23,10 +25,15 @@ public class SearchController {
     private final OfferRepository offerRepository;
     private final OrganizationRepository organizationRepository;
 
+    private final OfferProps offerProps;
+    private final OrganizationProps organizationProps;
+
     @Autowired
-    public SearchController(OfferRepository offerRepository, OrganizationRepository organizationRepository) {
+    public SearchController(OfferRepository offerRepository, OrganizationRepository organizationRepository, OfferProps offerProps, OrganizationProps organizationProps) {
         this.offerRepository = offerRepository;
         this.organizationRepository = organizationRepository;
+        this.offerProps = offerProps;
+        this.organizationProps = organizationProps;
     }
 
     @GetMapping("/vacancy")
