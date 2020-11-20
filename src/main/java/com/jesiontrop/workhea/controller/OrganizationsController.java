@@ -8,6 +8,8 @@ import com.jesiontrop.workhea.repository.OfferRepository;
 import com.jesiontrop.workhea.repository.OrganizationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -61,7 +63,8 @@ public class OrganizationsController {
         if (organization == null)
             return "redirect:/organizations/error/notfound";
 
-        List<Offer> offers = organization.getOffers();
+        Pageable offerPageRequest = PageRequest.of(0, offerProps.getPageSize());
+        List<Offer> offers = offerRepository.findOfferByOrOrganizationIdEquals(id, offerPageRequest);
         model.addAttribute("offers", offers);
 
         return "/organization/organizationOffers";
