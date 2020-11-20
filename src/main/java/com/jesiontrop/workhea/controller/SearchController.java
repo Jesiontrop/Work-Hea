@@ -63,11 +63,13 @@ public class SearchController {
 
     @GetMapping("/organization")
     public String showOrganization(@RequestParam(defaultValue = "") String q, Model model) {
+        Pageable organizationPageRequest = PageRequest.of(0, organizationProps.getPageSize());
+
         List<Organization> organizationList = new ArrayList<>();
         if (!q.equals(""))
-            organizationList = organizationRepository.findAllByNameOfOrganizationContains(q);
+            organizationList = organizationRepository.findAllByNameOfOrganizationContains(q, organizationPageRequest);
         else
-            organizationRepository.findAll().forEach(organizationList::add);
+            organizationRepository.findAll(organizationPageRequest).forEach(organizationList::add);
 
         final String searchError = "No results found for \"" + q + "\"";
 
