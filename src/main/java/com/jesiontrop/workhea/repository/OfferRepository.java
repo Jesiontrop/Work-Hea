@@ -11,6 +11,8 @@ import java.util.List;
 
 public interface OfferRepository extends CrudRepository<Offer, Long> {
 
+    Iterable<Offer> findAll(Pageable pageable);
+
     @Modifying
     @Query( value = "SELECT * FROM offer WHERE organization_id = :organizationId",
             nativeQuery = true)
