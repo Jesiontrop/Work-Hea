@@ -39,8 +39,13 @@ public class SearchController {
     }
 
     @GetMapping("/vacancy")
-    public String showVacancy(@RequestParam(defaultValue = "") String q, Model model) {
-        Pageable offerPageRequest = PageRequest.of(0, offerProps.getPageSize());
+    public String showVacancy(@RequestParam(defaultValue = "") String q,
+                              @RequestParam(value = "page", defaultValue = "1") Integer page,
+                              Model model) {
+        Integer pageSize = offerProps.getPageSize();
+        Integer pageStart = page > 0 ? (page - 1) * offerProps.getPageSize() : 0;
+
+        Pageable offerPageRequest = PageRequest.of(pageStart, pageSize + pageStart);
 
         List<Offer> offers = new ArrayList<>();
         if (!q.equals(""))
