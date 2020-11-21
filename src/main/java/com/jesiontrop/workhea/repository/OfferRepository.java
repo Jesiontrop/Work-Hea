@@ -23,13 +23,29 @@ public interface OfferRepository extends CrudRepository<Offer, Long> {
             nativeQuery = true)
     List<Offer> findOfferByOrOrganizationIdEquals(Long organizationId, Pageable pageable);
 
-    //MySql request
+    /*
+    MySql request
+    "MATCH () AGAINST ()" only work if vacancy_title have FULLTEXT
+    else need start the request -
+    "
+        ALTER TABLE offer
+        ADD FULLTEXT(vacancy_title)
+    "
+     */
     @Modifying
     @Query( value = "SELECT * FROM offer WHERE MATCH (vacancy_title) AGAINST (:q)",
             nativeQuery = true)
     List<Offer> findAllByVacancyTitleContains(@Param("q") String q);
 
-    //MySql request
+    /*
+    MySql request
+    "MATCH () AGAINST ()" only work if vacancy_title have FULLTEXT
+    else need start the request -
+    "
+        ALTER TABLE offer
+        ADD FULLTEXT(vacancy_title)
+    "
+     */
     @Query( value = "SELECT * FROM offer WHERE MATCH (vacancy_title) AGAINST (:q)",
             countQuery = "SELECT count(*) FROM offer WHERE MATCH (vacancy_title) AGAINST (:q)",
         nativeQuery = true)
