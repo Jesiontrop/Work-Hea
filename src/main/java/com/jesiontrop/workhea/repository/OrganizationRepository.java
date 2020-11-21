@@ -13,13 +13,29 @@ public interface OrganizationRepository extends CrudRepository<Organization, Lon
 
     Iterable<Organization> findAll(Pageable pageable);
 
-    //MySql request
+    /*
+   MySql request
+   "MATCH () AGAINST ()" only work if name_of_organization have FULLTEXT
+   else need start the request -
+   "
+       ALTER TABLE offer
+       ADD FULLTEXT(vacancy_title)
+   "
+    */
     @Modifying
     @Query( value = "SELECT * FROM organization WHERE MATCH (name_of_organization) AGAINST (:q)",
             nativeQuery = true)
     List<Organization> findAllByNameOfOrganizationContains(@Param("q") String q);
 
-    //MySql request
+    /*
+   MySql request
+   "MATCH () AGAINST ()" only work if name_of_organization have FULLTEXT
+   else need start the request -
+   "
+       ALTER TABLE offer
+       ADD FULLTEXT(vacancy_title)
+   "
+    */
     @Query( value = "SELECT * FROM organization WHERE MATCH (name_of_organization) AGAINST (:q)",
             countQuery = "SELECT count(*) FROM organization WHERE MATCH (name_of_organization) AGAINST (:q)",
             nativeQuery = true)
