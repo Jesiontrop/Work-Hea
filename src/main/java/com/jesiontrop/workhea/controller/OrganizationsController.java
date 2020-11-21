@@ -27,7 +27,10 @@ public class OrganizationsController {
     OrganizationProps organizationProps;
     OfferProps offerProps;
 
-    public OrganizationsController(OrganizationRepository organizationRepository, OfferRepository offerRepository, OrganizationProps organizationProps, OfferProps offerProps) {
+    public OrganizationsController(OrganizationRepository organizationRepository,
+                                   OfferRepository offerRepository,
+                                   OrganizationProps organizationProps,
+                                   OfferProps offerProps) {
         this.organizationRepository = organizationRepository;
         this.offerRepository = offerRepository;
         this.organizationProps = organizationProps;
@@ -58,12 +61,17 @@ public class OrganizationsController {
     }
 
     @GetMapping("/{id}/offers")
-    public String showOrganizationOffers(@PathVariable("id") Long id, Model model) {
+    public String showOrganizationOffers(@PathVariable("id") Long id,
+                                         @RequestParam(value = "page", defaultValue = "1") Integer page,
+                                         Model model) {
         Organization organization = organizationRepository.findById(id).orElse(null);
         if (organization == null)
             return "redirect:/organizations/error/notfound";
 
-        Pageable offerPageRequest = PageRequest.of(0, offerProps.getPageSize());
+        Integer pageSize = offerProps.getPageSize();
+        Integer pageStart = page > 0 ? (page - 1) * offerProps.getPageSize() : 0;
+
+        Pageable offerPageRequest = PageRequest.of(pageStart, pageSize + pageStart);
         List<Offer> offers = offerRepository.findOfferByOrOrganizationIdEquals(id, offerPageRequest);
         model.addAttribute("offers", offers);
 
