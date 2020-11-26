@@ -2,6 +2,7 @@ package com.jesiontrop.workhea.controller;
 
 import com.jesiontrop.workhea.model.RegistrationForm;
 import com.jesiontrop.workhea.security.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@Slf4j
 @RequestMapping("/register")
 public class RegistrationController {
 
