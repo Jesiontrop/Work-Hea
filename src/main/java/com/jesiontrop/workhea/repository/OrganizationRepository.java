@@ -18,8 +18,8 @@ public interface OrganizationRepository extends CrudRepository<Organization, Lon
    "MATCH () AGAINST ()" only work if name_of_organization have FULLTEXT
    else need start the request -
    "
-       ALTER TABLE offer
-       ADD FULLTEXT(vacancy_title)
+       ALTER TABLE organization
+       ADD FULLTEXT(name_of_organization)
    "
     */
     @Modifying
@@ -32,8 +32,8 @@ public interface OrganizationRepository extends CrudRepository<Organization, Lon
    "MATCH () AGAINST ()" only work if name_of_organization have FULLTEXT
    else need start the request -
    "
-       ALTER TABLE offer
-       ADD FULLTEXT(vacancy_title)
+       ALTER TABLE organization
+       ADD FULLTEXT(name_of_organization)
    "
     */
     @Query( value = "SELECT * FROM organization WHERE MATCH (name_of_organization) AGAINST (:q)",
