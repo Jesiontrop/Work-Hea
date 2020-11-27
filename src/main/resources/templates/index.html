@@ -9,6 +9,25 @@
     <title>WorkHea</title>
 </head>
 <body>
+    <h1>WorkHea</h1>
+
+    <div class="w-100 p-3">
+        <form th:action="@{/}" method="post">
+            <div class="input-group mb-3">
+                <input type="search" name="q" class="w-50">
+                <div class="input-group-append w-20">
+                    <input type="submit" value="Search">
+                </div>
+            </div>
+            <div>
+                <input type="radio" id="isSearchVacancy" name="isSearch" th:value="${isSearchVacancy}" checked/>
+                <label th:for="isSearchVacancy">Vacancy</label>
+                <input type="radio" id="isSearchOrganization" name="isSearch" th:value="${isSearchOrganization}"/>
+                <label th:for="isSearchOrganization">Organization</label>
+            </div>
+
+        </form>
+    </div>
 
 </body>
 </html>
