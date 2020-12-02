@@ -20,6 +20,11 @@
                 <input hidden type="submit" value="Sign Out"/>
             </form>
         </div>
+
+        <div class="p-2 bd-highlight" sec:authorize="!isAuthenticated()">
+            <a th:href="@{/login}" role="menuitem" class="btn btn-secondary">Sign In</a>
+            <a th:href="@{/register}" role="menuitem" class="btn btn-secondary">Sign Up</a>
+        </div>
     </div>
 
     <div class="w-100 p-3">
