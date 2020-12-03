@@ -75,7 +75,19 @@ public class OrganizationsController {
         for (long i = 2; i <= page; i++)
             offerPageRequest = offerPageRequest.next();
         List<Offer> offers = offerRepository.findOfferByOrOrganizationIdEquals(id, offerPageRequest);
+
+        Long offersSize = offerRepository.count();
+        Long pagesCount = (offersSize + pageSize - 1)/ pageSize;
+
+        List<String> pagesArray = new ArrayList<>();
+        for (long i = 1; i <= pagesCount; i++)
+            pagesArray.add(Long.toString(i));
+
         model.addAttribute("offers", offers);
+        model.addAttribute("offersSize", offersSize);
+        model.addAttribute("pagesCount", pagesCount);
+        model.addAttribute("pagesArray", pagesArray);
+        model.addAttribute("page", page);
 
         return "/organization/organizationOffers";
     }
