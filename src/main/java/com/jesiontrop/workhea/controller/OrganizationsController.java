@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -69,9 +70,10 @@ public class OrganizationsController {
             return "redirect:/organizations/error/notfound";
 
         Integer pageSize = offerProps.getPageSize();
-        Integer pageStart = page > 0 ? (page - 1) * offerProps.getPageSize() : 0;
 
-        Pageable offerPageRequest = PageRequest.of(pageStart, pageSize + pageStart);
+        Pageable offerPageRequest = PageRequest.of(0, pageSize);
+        for (long i = 2; i <= page; i++)
+            offerPageRequest = offerPageRequest.next();
         List<Offer> offers = offerRepository.findOfferByOrOrganizationIdEquals(id, offerPageRequest);
         model.addAttribute("offers", offers);
 
