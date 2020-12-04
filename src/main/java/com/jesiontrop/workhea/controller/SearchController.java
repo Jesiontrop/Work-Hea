@@ -72,9 +72,10 @@ public class SearchController {
                                    @RequestParam(value = "page", defaultValue = "1") Integer page,
                                    Model model) {
         Integer pageSize = offerProps.getPageSize();
-        Integer pageStart = page > 0 ? (page - 1) * offerProps.getPageSize() : 0;
 
-        Pageable organizationPageRequest = PageRequest.of(pageStart, pageSize + pageStart);
+        Pageable organizationPageRequest = PageRequest.of(0, pageSize);
+        for (long i = 2; i <= page; i++)
+            organizationPageRequest = organizationPageRequest.next();
 
         List<Organization> organizationList = new ArrayList<>();
         if (!q.equals(""))
