@@ -38,6 +38,12 @@ public class OrganizationsController {
         this.offerProps = offerProps;
     }
 
+    @GetMapping
+    public String showOrganizations() {
+
+        return "redirect:/search/organization";
+    }
+
     @GetMapping("/add")
     public String addOrganization(Model model) {
         return "/organization/addOrgForm";
