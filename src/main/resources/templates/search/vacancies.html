@@ -42,6 +42,15 @@
         </tbody>
     </table>
 
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-sm-auto " th:each="i : ${pagesArray}">
+                <span th:if="${i} == ${page}">..</span>
+                <a th:if="${i} != ${page}" th:href="@{/search/vacancy(q = ${q}, page = ${i})}" th:text="${i}"></a>
+            </div>
+        </div>
+    </div>
+
     <span class="badge badge-danger" th:if="${hasSearchError}"
           th:text="${searchError}"></span>
 
