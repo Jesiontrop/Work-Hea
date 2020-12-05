@@ -75,6 +75,7 @@ public class SearchController {
         model.addAttribute("pagesCount", pagesCount);
         model.addAttribute("pagesArray", pagesArray);
         model.addAttribute("page", page);
+        model.addAttribute("q", q);
 
         return "/search/vacancies";
     }
@@ -116,6 +117,7 @@ public class SearchController {
         model.addAttribute("pagesCount", pagesCount);
         model.addAttribute("pagesArray", pagesArray);
         model.addAttribute("page", page);
+        model.addAttribute("q", q);
 
         return "/search/organizationList";
     }
