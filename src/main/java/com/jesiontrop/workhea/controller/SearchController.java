@@ -45,18 +45,21 @@ public class SearchController {
         final String searchError = "No results found for \"" + q + "\"";
 
         int pageSize = offerProps.getPageSize();
+        long offersSize;
 
         Pageable offerPageRequest = PageRequest.of(0, pageSize);
         for (long i = 2; i <= page; i++)
             offerPageRequest = offerPageRequest.next();
 
         List<Offer> offers = new ArrayList<>();
-        if (!q.equals(""))
+        if (!q.equals("")) {
             offers = offerRepository.findAllByVacancyTitleContains(q, offerPageRequest);
-        else
+            offersSize = offerRepository.findAllByVacancyTitleContains(q).size();
+        }
+        else {
             offerRepository.findAll(offerPageRequest).forEach(offers::add);
-
-        long offersSize = offers.size();
+            offersSize = offerRepository.count();
+        }
 
         boolean hasSearchError = false;
         if (offersSize == 0)
