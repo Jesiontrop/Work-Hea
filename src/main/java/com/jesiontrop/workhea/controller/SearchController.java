@@ -42,7 +42,9 @@ public class SearchController {
     public String showVacancy(@RequestParam(defaultValue = "") String q,
                               @RequestParam(value = "page", defaultValue = "1") Integer page,
                               Model model) {
-        Integer pageSize = offerProps.getPageSize();
+        final String searchError = "No results found for \"" + q + "\"";
+
+        int pageSize = offerProps.getPageSize();
 
         Pageable offerPageRequest = PageRequest.of(0, pageSize);
         for (long i = 2; i <= page; i++)
@@ -54,15 +56,25 @@ public class SearchController {
         else
             offerRepository.findAll(offerPageRequest).forEach(offers::add);
 
-        final String searchError = "No results found for \"" + q + "\"";
+        long offersSize = offers.size();
 
         boolean hasSearchError = false;
-        if (offers.size() == 0)
+        if (offersSize == 0)
             hasSearchError = true;
+
+        long pagesCount = (offersSize + pageSize - 1)/ pageSize;
+
+        List<String> pagesArray = new ArrayList<>();
+        for (long i = 1; i <= pagesCount; i++)
+            pagesArray.add(Long.toString(i));
 
         model.addAttribute("searchError", searchError);
         model.addAttribute("hasSearchError", hasSearchError);
         model.addAttribute("offers", offers);
+        model.addAttribute("offersSize", offersSize);
+        model.addAttribute("pagesCount", pagesCount);
+        model.addAttribute("pagesArray", pagesArray);
+        model.addAttribute("page", page);
 
         return "/search/vacancies";
     }
