@@ -28,6 +28,7 @@ public class OrganizationsController {
     OrganizationProps organizationProps;
     OfferProps offerProps;
 
+    @Autowired
     public OrganizationsController(OrganizationRepository organizationRepository,
                                    OfferRepository offerRepository,
                                    OrganizationProps organizationProps,
@@ -45,7 +46,7 @@ public class OrganizationsController {
     }
 
     @GetMapping("/add")
-    public String addOrganization(Model model) {
+    public String addOrganization() {
         return "/organization/addOrgForm";
     }
 
@@ -75,15 +76,15 @@ public class OrganizationsController {
         if (organization == null)
             return "redirect:/organizations/error/notfound";
 
-        Integer pageSize = offerProps.getPageSize();
+        int pageSize = offerProps.getPageSize();
 
         Pageable offerPageRequest = PageRequest.of(0, pageSize);
         for (long i = 2; i <= page; i++)
             offerPageRequest = offerPageRequest.next();
         List<Offer> offers = offerRepository.findOfferByOrOrganizationIdEquals(id, offerPageRequest);
 
-        Long offersSize = offerRepository.count();
-        Long pagesCount = (offersSize + pageSize - 1)/ pageSize;
+        long offersSize = offerRepository.count();
+        long pagesCount = (offersSize + pageSize - 1)/ pageSize;
 
         List<String> pagesArray = new ArrayList<>();
         for (long i = 1; i <= pagesCount; i++)
@@ -99,7 +100,7 @@ public class OrganizationsController {
     }
 
     @GetMapping("/{id}/offers/add")
-    public String addOrgOffer(@PathVariable("id") Long id, Model model) {
+    public String addOrgOffer(@PathVariable("id") Long id) {
         Organization organization = organizationRepository.findById(id).orElse(null);
         if (organization == null)
             return "redirect:/organizations/error/notfound";
