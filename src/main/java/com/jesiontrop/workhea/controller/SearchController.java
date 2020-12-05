@@ -91,17 +91,21 @@ public class SearchController {
 
         int pageSize = organizationProps.getPageSize();
 
+        long organizationListSize;
+
         Pageable organizationPageRequest = PageRequest.of(0, pageSize);
         for (long i = 2; i <= page; i++)
             organizationPageRequest = organizationPageRequest.next();
 
         List<Organization> organizationList = new ArrayList<>();
-        if (!q.equals(""))
+        if (!q.equals("")) {
             organizationList = organizationRepository.findAllByNameOfOrganizationContains(q, organizationPageRequest);
-        else
+            organizationListSize = organizationRepository.findAllByNameOfOrganizationContains(q).size();
+        }
+        else {
             organizationRepository.findAll(organizationPageRequest).forEach(organizationList::add);
-
-        long organizationListSize = organizationList.size();
+            organizationListSize = organizationRepository.count();
+        }
 
         boolean hasSearchError = false;
         if (organizationList.size() == 0)
