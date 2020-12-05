@@ -112,7 +112,7 @@ public class SearchController {
         model.addAttribute("searchError", searchError);
         model.addAttribute("hasSearchError", hasSearchError);
         model.addAttribute("organizationList", organizationList);
-        model.addAttribute("offersSize", offersSize);
+        model.addAttribute("organizationListSize", organizationListSize);
         model.addAttribute("pagesCount", pagesCount);
         model.addAttribute("pagesArray", pagesArray);
         model.addAttribute("page", page);
