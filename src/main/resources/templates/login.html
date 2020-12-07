@@ -14,7 +14,7 @@
     <article class="card-body mx-auto" style="max-width: 400px;">
         <h4 class="card-title mt-3 text-center">Log In</h4>
 
-        <div th:if="${error}" class="error">
+        <div th:if="${(param.error != null) and (param.error[0] == 'true')}" class="alert alert-danger">
             Unable login. Check you username or password.
         </div>
 
