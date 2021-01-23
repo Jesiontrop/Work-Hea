@@ -5,7 +5,7 @@ import com.jesiontrop.workhea.model.Organization;
 import com.jesiontrop.workhea.props.OfferProps;
 import com.jesiontrop.workhea.props.OrganizationProps;
 import com.jesiontrop.workhea.repository.OfferRepository;
-import com.jesiontrop.workhea.repository.OrganizationRepository;
+import com.jesiontrop.workhea.repository.MySQLOrganizationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -25,13 +25,13 @@ import java.util.List;
 public class SearchController {
 
     private final OfferRepository offerRepository;
-    private final OrganizationRepository organizationRepository;
+    private final MySQLOrganizationRepository organizationRepository;
 
     private final OfferProps offerProps;
     private final OrganizationProps organizationProps;
 
     @Autowired
-    public SearchController(OfferRepository offerRepository, OrganizationRepository organizationRepository, OfferProps offerProps, OrganizationProps organizationProps) {
+    public SearchController(OfferRepository offerRepository, MySQLOrganizationRepository organizationRepository, OfferProps offerProps, OrganizationProps organizationProps) {
         this.offerRepository = offerRepository;
         this.organizationRepository = organizationRepository;
         this.offerProps = offerProps;

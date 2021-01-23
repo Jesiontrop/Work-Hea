@@ -5,7 +5,7 @@ import com.jesiontrop.workhea.model.Organization;
 import com.jesiontrop.workhea.props.OfferProps;
 import com.jesiontrop.workhea.props.OrganizationProps;
 import com.jesiontrop.workhea.repository.OfferRepository;
-import com.jesiontrop.workhea.repository.OrganizationRepository;
+import com.jesiontrop.workhea.repository.MySQLOrganizationRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -22,14 +22,14 @@ import java.util.List;
 @RequestMapping("/organizations")
 public class OrganizationsController {
 
-    OrganizationRepository organizationRepository;
+    MySQLOrganizationRepository organizationRepository;
     OfferRepository offerRepository;
 
     OrganizationProps organizationProps;
     OfferProps offerProps;
 
     @Autowired
-    public OrganizationsController(OrganizationRepository organizationRepository,
+    public OrganizationsController(MySQLOrganizationRepository organizationRepository,
                                    OfferRepository offerRepository,
                                    OrganizationProps organizationProps,
                                    OfferProps offerProps) {
