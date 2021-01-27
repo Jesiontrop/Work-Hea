@@ -1,7 +1,7 @@
 package com.jesiontrop.workhea.controller;
 
 import com.jesiontrop.workhea.model.Offer;
-import com.jesiontrop.workhea.repository.OfferRepository;
+import com.jesiontrop.workhea.repository.MySQLOfferRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/offer")
 public class OfferController {
 
-    OfferRepository offerRepository;
+    MySQLOfferRepository offerRepository;
 
     @Autowired
-    public OfferController(OfferRepository offerRepository) {
+    public OfferController(MySQLOfferRepository offerRepository) {
         this.offerRepository = offerRepository;
     }
 
