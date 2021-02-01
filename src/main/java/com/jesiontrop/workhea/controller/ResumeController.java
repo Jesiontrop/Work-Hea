@@ -4,4 +4,8 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class ResumeController {
+
+    public String resumeForm() {
+        return null;
+    }
 }
