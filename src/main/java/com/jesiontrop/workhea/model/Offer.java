@@ -12,7 +12,7 @@ import java.util.Date;
 public class Offer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "offer_sequence")
     private Long id;
 
     @NotBlank(message = "Vacancy title is required")
