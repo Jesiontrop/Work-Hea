@@ -75,9 +75,18 @@ class MySQLOrganizationRepositoryTest {
 
     @Test
     void findAllByNameOfOrganizationContains() {
-    }
 
-    @Test
-    void testFindAllByNameOfOrganizationContains() {
+        String q = "Samsung";
+
+        Organization organization;
+
+        //#1
+        organization = new Organization(q, "+71234567890");
+        mySQLOrganizationRepository.save(organization);
+
+        //He don't found data who created in the test BUT he found other data in the DB
+        List<Organization> found = mySQLOrganizationRepository.findAllByNameOfOrganizationContains(q);
+
+        assertThat(found).contains(organization);
     }
 }
