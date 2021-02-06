@@ -30,6 +30,9 @@ public class Offer {
     @ManyToOne(targetEntity = Organization.class)
     private Organization organization;
 
+    public Offer() {
+    }
+
     public Offer(@NotBlank(message = "Vacancy title is required") String vacancyTitle, @NotNull(message = "Salary is required") Integer salary) {
         this.vacancyTitle = vacancyTitle;
         this.salary = salary;
