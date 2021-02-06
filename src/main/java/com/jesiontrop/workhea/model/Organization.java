@@ -25,4 +25,13 @@ public class Organization {
     public void addOffer(Offer offer) {
         this.offers.add(offer);
     }
+
+    public Organization() {
+    }
+
+    public Organization(@NotBlank(message = "Name of organization is required") String nameOfOrganization,
+                        @NotBlank(message = "Organization Number is required") String organizationNumber) {
+        this.nameOfOrganization = nameOfOrganization;
+        this.organizationNumber = organizationNumber;
+    }
 }
