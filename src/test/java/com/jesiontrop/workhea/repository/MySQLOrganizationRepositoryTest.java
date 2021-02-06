@@ -36,6 +36,47 @@ class MySQLOrganizationRepositoryTest {
     @Test
     void findAll() {
 
+        List<Organization> organizations = new ArrayList<>();
+
+        mySQLOrganizationRepository.findAll().forEach(organizations::add);
+
+        Organization organization;
+
+        //#1
+        organization = new Organization("Samsung", "+71234567890");
+        organizations.add(organization);
+        testEntityManager.persist( organization);
+
+        //#2
+        organization = new Organization("Microsoft", "+71234567890");
+        organizations.add(organization);
+        testEntityManager.persist( organization);
+
+        //#3
+        organization = new Organization("Exactpro", "+71234567890");
+        organizations.add(organization);
+        testEntityManager.persist( organization);
+
+        //#4
+        organization = new Organization("LG", "+71234567890");
+        organizations.add(organization);
+        testEntityManager.persist( organization);
+
+        //#5
+        organization = new Organization("Sony", "+71234567890");
+        organizations.add(organization);
+        testEntityManager.persist( organization);
+
+        testEntityManager.flush();
+
+        List<Organization> found = new ArrayList<>();
+        mySQLOrganizationRepository.findAll().forEach(found::add);
+
+        assertEquals(organizations.size(), found.size());
+
+        assertTrue(found.containsAll(organizations));
+
+        testEntityManager.clear();
     }
 
     @Test
