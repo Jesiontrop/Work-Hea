@@ -33,8 +33,17 @@ public class Offer {
     public Offer() {
     }
 
-    public Offer(@NotBlank(message = "Vacancy title is required") String vacancyTitle, @NotNull(message = "Salary is required") Integer salary) {
+    public Offer(@NotBlank(message = "Vacancy title is required") String vacancyTitle,
+                 @NotNull(message = "Salary is required") Integer salary) {
         this.vacancyTitle = vacancyTitle;
         this.salary = salary;
+    }
+
+    public Offer(@NotBlank(message = "Vacancy title is required") String vacancyTitle,
+                 @NotNull(message = "Salary is required") Integer salary,
+                 Organization organization) {
+        this.vacancyTitle = vacancyTitle;
+        this.salary = salary;
+        this.organization = organization;
     }
 }
