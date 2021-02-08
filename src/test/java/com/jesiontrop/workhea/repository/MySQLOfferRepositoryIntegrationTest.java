@@ -4,10 +4,13 @@ import com.jesiontrop.workhea.model.Offer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +19,8 @@ import static org.assertj.core.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
+@Transactional
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class MySQLOfferRepositoryIntegrationTest {
 
     @Autowired
@@ -27,6 +32,7 @@ class MySQLOfferRepositoryIntegrationTest {
     @Test
     void findAll() {
         List<Offer> offers = new ArrayList<>();
+        mySQLOfferRepository.findAll().forEach(offers::add);
         Offer offer;
 
         //#1
@@ -52,8 +58,10 @@ class MySQLOfferRepositoryIntegrationTest {
 
         testEntityManager.flush();
 
-        List<Offer> found = (List<Offer>) mySQLOfferRepository.findAll();
-        assertEquals(5, found.size());
+        List<Offer> found = new ArrayList<>();
+        mySQLOfferRepository.findAll().forEach(found::add);
+
+        assertEquals(offers.size(), found.size());
 
         assertThat(found).isEqualTo(offers);
 
@@ -63,16 +71,9 @@ class MySQLOfferRepositoryIntegrationTest {
     void findOfferByOrOrganizationIdEquals() {
 
     }
-
-    @Test
-    void testFindOfferByOrOrganizationIdEquals() {
-    }
-
+    
     @Test
     void findAllByVacancyTitleContains() {
     }
 
-    @Test
-    void testFindAllByVacancyTitleContains() {
-    }
 }
