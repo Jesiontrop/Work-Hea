@@ -63,7 +63,7 @@ class MySQLOfferRepositoryIntegrationTest {
 
         assertEquals(offers.size(), found.size());
 
-        assertThat(found).isEqualTo(offers);
+        assertTrue(found.containsAll(offers));
 
     }
 
