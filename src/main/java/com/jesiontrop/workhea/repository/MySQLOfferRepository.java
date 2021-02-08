@@ -14,13 +14,10 @@ public interface MySQLOfferRepository extends CrudRepository<Offer, Long> {
     Iterable<Offer> findAll(Pageable pageable);
 
     @Modifying
-    @Query( value = "SELECT * FROM offer WHERE organization_id = :organizationId",
-            nativeQuery = true)
+    @Query( value = "SELECT o FROM Offer o WHERE o.organization.id = :organizationId")
     List<Offer> findOfferByOrOrganizationIdEquals(Long organizationId);
 
-    @Query( value = "SELECT * FROM offer WHERE organization_id = :organizationId",
-            countQuery = "SELECT count(*) FROM offer WHERE organization_id = :organizationId",
-            nativeQuery = true)
+    @Query( value = "SELECT o FROM Offer o WHERE o.organization.id = :organizationId")
     List<Offer> findOfferByOrOrganizationIdEquals(Long organizationId, Pageable pageable);
 
     /*
