@@ -1,6 +1,7 @@
 package com.jesiontrop.workhea.repository;
 
 import com.jesiontrop.workhea.model.Offer;
+import com.jesiontrop.workhea.model.Organization;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +70,41 @@ class MySQLOfferRepositoryIntegrationTest {
 
     @Test
     void findOfferByOrOrganizationIdEquals() {
+        Organization organization = new Organization("Microsoft", "+71234567890");
+        testEntityManager.persist(organization);
+        testEntityManager.flush();
 
+        List<Offer> offers = new ArrayList<>();
+        Offer offer;
+
+        //#1
+        offer = new Offer("Java Developer", 60000, organization);
+        offers.add(offer);
+        testEntityManager.persist( offer);
+        //#2
+        offer = new Offer("JavaScript Developer", 60000, organization);
+        offers.add(offer);
+        testEntityManager.persist( offer);
+        //#3
+        offer = new Offer("C# Developer", 60000, organization);
+        offers.add(offer);
+        testEntityManager.persist( offer);
+        //#4
+        offer = new Offer("Python Developer", 60000, organization);
+        offers.add(offer);
+        testEntityManager.persist( offer);
+        //#5
+        offer = new Offer("PHP Developer", 60000, organization);
+        offers.add(offer);
+        testEntityManager.persist( offer);
+
+        testEntityManager.flush();
+
+        List<Offer> found = mySQLOfferRepository.findOfferByOrOrganizationIdEquals(organization.getId());
+        
+        assertEquals(offers.size(), found.size());
+
+        assertTrue(found.containsAll(offers));
     }
     
     @Test
