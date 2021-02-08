@@ -12,7 +12,7 @@ import java.util.Date;
 public class Offer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "offer_sequence")
     private Long id;
 
     @NotBlank(message = "Vacancy title is required")
@@ -29,4 +29,21 @@ public class Offer {
 
     @ManyToOne(targetEntity = Organization.class)
     private Organization organization;
+
+    public Offer() {
+    }
+
+    public Offer(@NotBlank(message = "Vacancy title is required") String vacancyTitle,
+                 @NotNull(message = "Salary is required") Integer salary) {
+        this.vacancyTitle = vacancyTitle;
+        this.salary = salary;
+    }
+
+    public Offer(@NotBlank(message = "Vacancy title is required") String vacancyTitle,
+                 @NotNull(message = "Salary is required") Integer salary,
+                 Organization organization) {
+        this.vacancyTitle = vacancyTitle;
+        this.salary = salary;
+        this.organization = organization;
+    }
 }

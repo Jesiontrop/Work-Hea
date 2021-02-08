@@ -12,7 +12,7 @@ import java.util.List;
 public class Organization {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "organization_sequence")
     private Long id;
     @NotBlank(message = "Name of organization is required")
     private String nameOfOrganization;
@@ -24,5 +24,14 @@ public class Organization {
 
     public void addOffer(Offer offer) {
         this.offers.add(offer);
+    }
+
+    public Organization() {
+    }
+
+    public Organization(@NotBlank(message = "Name of organization is required") String nameOfOrganization,
+                        @NotBlank(message = "Organization Number is required") String organizationNumber) {
+        this.nameOfOrganization = nameOfOrganization;
+        this.organizationNumber = organizationNumber;
     }
 }
