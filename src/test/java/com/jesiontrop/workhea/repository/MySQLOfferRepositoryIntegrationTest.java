@@ -109,6 +109,39 @@ class MySQLOfferRepositoryIntegrationTest {
     
     @Test
     void findAllByVacancyTitleContains() {
+        String q = "Developer";
+
+        List<Offer> offers = mySQLOfferRepository.findAllByVacancyTitleContains(q);
+        Offer offer;
+
+        //#1
+        offer = new Offer("Java Developer", 60000);
+        offers.add(offer);
+        testEntityManager.persist( offer);
+        //#2
+        offer = new Offer("JavaScript Developer", 60000);
+        offers.add(offer);
+        testEntityManager.persist( offer);
+        //#3
+        offer = new Offer("C# Developer", 60000);
+        offers.add(offer);
+        testEntityManager.persist( offer);
+        //#4
+        offer = new Offer("Python Developer", 60000);
+        offers.add(offer);
+        testEntityManager.persist( offer);
+        //#5
+        offer = new Offer("PHP Developer", 60000);
+        offers.add(offer);
+        testEntityManager.persist( offer);
+
+        testEntityManager.flush();
+
+        List<Offer> found = mySQLOfferRepository.findAllByVacancyTitleContains(q);
+
+        assertEquals(offers.size(), found.size());
+
+        assertThat(found.containsAll(offers));
     }
 
 }
