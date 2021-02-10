@@ -31,7 +31,10 @@ public class SearchController {
     private final OrganizationProps organizationProps;
 
     @Autowired
-    public SearchController(MySQLOfferRepository offerRepository, MySQLOrganizationRepository organizationRepository, OfferProps offerProps, OrganizationProps organizationProps) {
+    public SearchController(MySQLOfferRepository offerRepository,
+                            MySQLOrganizationRepository organizationRepository,
+                            OfferProps offerProps,
+                            OrganizationProps organizationProps) {
         this.offerRepository = offerRepository;
         this.organizationRepository = organizationRepository;
         this.offerProps = offerProps;
