@@ -1,6 +1,9 @@
 package com.jesiontrop.workhea.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -9,6 +12,8 @@ import java.util.List;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Organization {
 
     @Id
@@ -24,9 +29,6 @@ public class Organization {
 
     public void addOffer(Offer offer) {
         this.offers.add(offer);
-    }
-
-    public Organization() {
     }
 
     public Organization(@NotBlank(message = "Name of organization is required") String nameOfOrganization,
