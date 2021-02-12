@@ -1,6 +1,8 @@
 package com.jesiontrop.workhea.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -9,6 +11,8 @@ import java.util.Date;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Offer {
 
     @Id
@@ -29,9 +33,6 @@ public class Offer {
 
     @ManyToOne(targetEntity = Organization.class)
     private Organization organization;
-
-    public Offer() {
-    }
 
     public Offer(@NotBlank(message = "Vacancy title is required") String vacancyTitle,
                  @NotNull(message = "Salary is required") Integer salary) {
