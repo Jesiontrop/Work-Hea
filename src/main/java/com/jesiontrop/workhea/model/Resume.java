@@ -1,7 +1,9 @@
 package com.jesiontrop.workhea.model;
 
 import com.jesiontrop.workhea.security.model.User;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,6 +12,8 @@ import java.util.List;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Resume {
 
     @Id
