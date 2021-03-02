@@ -1,4 +1,4 @@
-package com.jesiontrop.workhea.controller;
+package com.jesiontrop.workhea.web.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

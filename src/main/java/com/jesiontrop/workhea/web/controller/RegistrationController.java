@@ -1,4 +1,4 @@
-package com.jesiontrop.workhea.controller;
+package com.jesiontrop.workhea.web.controller;
 
 import com.jesiontrop.workhea.model.RegistrationForm;
 import com.jesiontrop.workhea.security.repository.UserRepository;
