@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@RestResource(rel = "organization", path = "organization")
+@RestResource(rel = "organizations", path = "organizations")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
