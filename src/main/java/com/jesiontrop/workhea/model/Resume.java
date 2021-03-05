@@ -4,14 +4,16 @@ import com.jesiontrop.workhea.security.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Data
 @Entity
+@RestResource(rel = "resumes", path = "resumes")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Resume {
