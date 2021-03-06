@@ -26,6 +26,7 @@ public class Organization {
     private String organizationNumber;
 
     @OneToMany(targetEntity = Offer.class, cascade = CascadeType.ALL)
+    @RestResource(rel = "offers", path = "offers")
     private List<Offer> offers = new ArrayList<>();
 
     public void addOffer(Offer offer) {
