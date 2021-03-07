@@ -35,6 +35,7 @@ public class Offer {
     }
 
     @ManyToOne(targetEntity = Organization.class)
+    @RestResource(rel = "organization", path = "organization")
     private Organization organization;
 
     public Offer(@NotBlank(message = "Vacancy title is required") String vacancyTitle,
