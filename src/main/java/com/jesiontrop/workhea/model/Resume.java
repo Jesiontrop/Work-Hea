@@ -36,6 +36,7 @@ public class Resume {
     private String careerObjective;
 
     @ManyToMany(targetEntity = Specialization.class)
+    @RestResource(rel = "specializations", path = "specializations")
     private List<Specialization> specializations;
     private Integer salary;
     @ManyToMany(targetEntity = Employment.class)
