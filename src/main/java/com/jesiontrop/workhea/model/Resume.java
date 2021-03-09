@@ -40,6 +40,7 @@ public class Resume {
     private List<Specialization> specializations;
     private Integer salary;
     @ManyToMany(targetEntity = Employment.class)
+    @RestResource(rel = "employments", path = "employments")
     private List<Employment> employments;
     @ManyToMany(targetEntity = Schedule.class)
     private List<Schedule> schedules;
