@@ -20,19 +20,19 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class MySQLOrganizationRepositoryTest {
+class OrganizationRepositoryTest {
 
     @Autowired
     private TestEntityManager testEntityManager;
     @Autowired
-    private MySQLOrganizationRepository mySQLOrganizationRepository;
+    private OrganizationRepository organizationRepository;
 
     @Test
     void findAll() {
 
         List<Organization> organizations = new ArrayList<>();
 
-        mySQLOrganizationRepository.findAll().forEach(organizations::add);
+        organizationRepository.findAll().forEach(organizations::add);
 
         Organization organization;
 
@@ -64,7 +64,7 @@ class MySQLOrganizationRepositoryTest {
         testEntityManager.flush();
 
         List<Organization> found = new ArrayList<>();
-        mySQLOrganizationRepository.findAll().forEach(found::add);
+        organizationRepository.findAll().forEach(found::add);
 
         assertEquals(organizations.size(), found.size());
 
@@ -82,10 +82,10 @@ class MySQLOrganizationRepositoryTest {
 
         //#1
         organization = new Organization(q, "+71234567890");
-        mySQLOrganizationRepository.save(organization);
+        organizationRepository.save(organization);
 
         //He don't found data who created in the test BUT he found other data in the DB
-        List<Organization> found = mySQLOrganizationRepository.findAllByNameOfOrganizationContains(q);
+        List<Organization> found = organizationRepository.findAllByNameOfOrganizationContains(q);
 
         assertThat(found).contains(organization);
     }

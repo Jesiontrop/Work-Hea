@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface MySQLOrganizationRepository extends CrudRepository<Organization, Long> {
+public interface OrganizationRepository extends CrudRepository<Organization, Long> {
 
     Iterable<Organization> findAll(Pageable pageable);
 

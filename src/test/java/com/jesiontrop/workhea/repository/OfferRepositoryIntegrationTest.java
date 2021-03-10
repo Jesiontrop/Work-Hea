@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.transaction.Transactional;
@@ -22,18 +21,18 @@ import static org.assertj.core.api.Assertions.*;
 @DataJpaTest
 @Transactional
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class MySQLOfferRepositoryIntegrationTest {
+class OfferRepositoryIntegrationTest {
 
     @Autowired
     private TestEntityManager testEntityManager;
 
     @Autowired
-    private MySQLOfferRepository mySQLOfferRepository;
+    private OfferRepository offerRepository;
 
     @Test
     void findAll() {
         List<Offer> offers = new ArrayList<>();
-        mySQLOfferRepository.findAll().forEach(offers::add);
+        offerRepository.findAll().forEach(offers::add);
         Offer offer;
 
         //#1
@@ -60,7 +59,7 @@ class MySQLOfferRepositoryIntegrationTest {
         testEntityManager.flush();
 
         List<Offer> found = new ArrayList<>();
-        mySQLOfferRepository.findAll().forEach(found::add);
+        offerRepository.findAll().forEach(found::add);
 
         assertEquals(offers.size(), found.size());
 
@@ -100,7 +99,7 @@ class MySQLOfferRepositoryIntegrationTest {
 
         testEntityManager.flush();
 
-        List<Offer> found = mySQLOfferRepository.findOfferByOrOrganizationIdEquals(organization.getId());
+        List<Offer> found = offerRepository.findOfferByOrOrganizationIdEquals(organization.getId());
         
         assertEquals(offers.size(), found.size());
 
@@ -111,7 +110,7 @@ class MySQLOfferRepositoryIntegrationTest {
     void findAllByVacancyTitleContains() {
         String q = "Developer";
 
-        List<Offer> offers = mySQLOfferRepository.findAllByVacancyTitleContains(q);
+        List<Offer> offers = offerRepository.findAllByVacancyTitleContains(q);
         Offer offer;
 
         //#1
@@ -137,7 +136,7 @@ class MySQLOfferRepositoryIntegrationTest {
 
         testEntityManager.flush();
 
-        List<Offer> found = mySQLOfferRepository.findAllByVacancyTitleContains(q);
+        List<Offer> found = offerRepository.findAllByVacancyTitleContains(q);
 
         assertEquals(offers.size(), found.size());
 
