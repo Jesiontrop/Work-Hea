@@ -10,27 +10,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/")
 public class IndexController {
 
-    private final String isSearchVacancy = "isSearchVacancy";
-    private final String isSearchOrganization = "isSearchOrganization";
-
     @GetMapping
     public String showIndex(Model model) {
-        model.addAttribute("isSearchVacancy", isSearchVacancy);
-        model.addAttribute("isSearchOrganization", isSearchOrganization);
 
         return "index";
-    }
-
-    @PostMapping
-    public String processSearch(@RequestParam(value = "isSearch") String isSearch,
-                                @RequestParam("q") String q) {
-
-        if (isSearch.equals(isSearchVacancy))
-            return "redirect:/search/vacancy?q=" + q;
-
-        if (isSearch.equals(isSearchOrganization))
-            return "redirect:/search/organization?q=" + q;
-
-        return "redirect:/";
     }
 }
