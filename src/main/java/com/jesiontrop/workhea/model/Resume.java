@@ -43,6 +43,7 @@ public class Resume {
     @RestResource(rel = "employments", path = "employments")
     private List<Employment> employments;
     @ManyToMany(targetEntity = Schedule.class)
+    @RestResource(rel = "schedules", path = "schedules")
     private List<Schedule> schedules;
 
     @Lob
