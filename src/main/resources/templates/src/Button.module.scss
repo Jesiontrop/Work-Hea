@@ -1,0 +1,16 @@
+@import "color";
+@import "text";
+
+.button {
+  background-color: $blue-3;
+  border-radius: 15px;
+  padding: 11px 43px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.text {
+  @include roboto-36-regular;
+  color: $black;
+  text-align: center;
+}
