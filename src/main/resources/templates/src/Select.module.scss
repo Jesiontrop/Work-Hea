@@ -11,16 +11,12 @@
 }
 .select-main {
   @extend %select;
+  @include roboto-36-regular;
   width: 225px;
   height: 45px;
-  .text {
+  option {
     @include roboto-36-regular;
     color: $black;
     text-align: center;
   }
-}
-.text {
-  @include roboto-36-regular;
-  color: $black;
-  text-align: center;
 }

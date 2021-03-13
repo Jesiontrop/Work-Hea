@@ -1,12 +1,17 @@
 import React from "react";
 import styles from "./Select.module.scss";
 
-const Select = (props, { text = "Text", version="main"}) => {
+const Select = (props, { version="main" }) => {
     const styleVersion = "select-" + version;
+
+    function MakeItem(x) {
+        return <option>{x}</option>
+    }
+
     return (
-        <div className={styles[styleVersion]}>
-            <p className={styles.text}>{text}</p>
-        </div>
+        <select className={styles[styleVersion]}>
+            {props.data.map(MakeItem)}
+        </select>
     );
 };
 
