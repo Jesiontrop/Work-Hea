@@ -1,0 +1,26 @@
+@import "color";
+@import "text";
+
+%select {
+  background-color: $blue-3;
+  border-radius: 15px;
+  padding: 2px 12px 1px 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.select-main {
+  @extend %select;
+  width: 225px;
+  height: 45px;
+  .text {
+    @include roboto-36-regular;
+    color: $black;
+    text-align: center;
+  }
+}
+.text {
+  @include roboto-36-regular;
+  color: $black;
+  text-align: center;
+}
