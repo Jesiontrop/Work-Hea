@@ -26,6 +26,10 @@
     text-align: center;
   }
 }
+.button-main-bl {
+  @extend .button-main;
+  border-radius: 0 15px 15px 0;
+}
 .button-second {
   @extend %button;
   width: 120px;
