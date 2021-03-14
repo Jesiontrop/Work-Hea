@@ -26,7 +26,7 @@ class SearchField extends React.Component {
                     <input className={styles.field} />
                     <Button onClick={this.onButtonClick} text={this.text} version="main-bl"/>
                 </div>
-                <Select data={this.props.data}/>
+                <Select data={this.props.data} version="main-bt"/>
             </div>
         );
     }
