@@ -9,6 +9,12 @@
   align-items: center;
   justify-content: center;
 }
+%select:active, %select:focus {
+  outline: none;
+}
+%select::-moz-focus-inner {
+  border: 0;
+}
 .select-main {
   @extend %select;
   @include roboto-36-regular;
