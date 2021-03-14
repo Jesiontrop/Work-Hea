@@ -3,7 +3,7 @@
 
 %select {
   background-color: $blue-3;
-  border-radius: 15px;
+  border-radius: 3px;
   padding: 2px 12px 1px 13px;
   display: flex;
   align-items: center;
@@ -22,5 +22,5 @@
 }
 .select-main-bt {
   @extend .select-main;
-  border-radius: 0 0 15px 15px;
+  border-radius: 0 0 3px 3px;
 }
