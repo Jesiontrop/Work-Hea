@@ -1,0 +1,19 @@
+@import "color";
+@import "text";
+
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.flexWrapperOne {
+  display: flex;
+  align-items: center;
+}
+.field {
+  @include roboto-36-regular;
+  text-align: left;
+  width: 478px;
+  height: 62px;
+  border: 1px solid $black;
+}
