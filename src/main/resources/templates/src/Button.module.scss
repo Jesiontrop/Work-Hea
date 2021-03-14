@@ -3,11 +3,18 @@
 
 %button {
   background-color: $blue-3;
+  border: none;
   border-radius: 15px;
   padding: 11px 43px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+%button:active, %button:focus {
+  outline: none;
+}
+%button::-moz-focus-inner {
+  border: 0;
 }
 .button-main {
   @extend %button;
