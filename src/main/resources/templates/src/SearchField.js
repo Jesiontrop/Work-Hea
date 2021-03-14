@@ -24,7 +24,7 @@ class SearchField extends React.Component {
             <div className={styles.search}>
                 <div className={styles.flexWrapperOne}>
                     <input className={styles.field} />
-                    <Button onClick={this.onButtonClick} text={this.text} />
+                    <Button onClick={this.onButtonClick} text={this.text} version="main-bl"/>
                 </div>
                 <Select data={this.props.data}/>
             </div>
