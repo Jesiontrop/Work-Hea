@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "./Select.module.scss";
 
-const Select = (props, { version="main" }) => {
+const Select = (props) => {
+    let version = "main";
+    if (props.version)
+        version = props.version;
     const styleVersion = "select-" + version;
 
     function MakeItem(x) {
