@@ -10,7 +10,7 @@ class SearchField extends React.Component {
             this.text = props.text;
         else
             this.text = "Search";
-        this.data = props.data;
+        this.options = props.options;
         if (props.onButtonClick)
             this.onButtonClick = props.onButtonClick;
         else
@@ -26,7 +26,7 @@ class SearchField extends React.Component {
                     <input className={styles.field} />
                     <Button onClick={this.onButtonClick} text={this.text} version="main-bl"/>
                 </div>
-                <Select data={this.props.data} version="main-bt"/>
+                <Select options={this.props.options} version="main-bt"/>
             </div>
         );
     }

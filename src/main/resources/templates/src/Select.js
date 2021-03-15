@@ -13,7 +13,7 @@ const Select = (props) => {
 
     return (
         <select className={styles[styleVersion]}>
-            {props.data.map(MakeItem)}
+            {props.options.map(MakeItem)}
         </select>
     );
 };
