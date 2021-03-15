@@ -1,7 +1,11 @@
 import React from "react";
 import styles from "./Button.module.scss";
 
-const Button = (props, { text = "Text"}) => {
+const Button = (props) => {
+    let text = "Text";
+    if (props.text)
+        text = props.text;
+
     let version = "main";
     if (props.version)
         version = props.version;
@@ -12,7 +16,7 @@ const Button = (props, { text = "Text"}) => {
         onCustomClick = props.onClick;
 
     return (
-        <button className={styles[styleVersion]} onClick={onCustomClick}>
+        <button className={styles[styleVersion]} style={props.style} onClick={onCustomClick}>
             <p className={styles.text}>{text}</p>
         </button>
     );
