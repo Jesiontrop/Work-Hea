@@ -1,8 +1,3 @@
-ALTER TABLE organization
-    ADD FULLTEXT(name_of_organization);
-ALTER TABLE offer
-    ADD FULLTEXT(vacancy_title);
-
 DELETE FROM employment;
 DELETE FROM schedule;
 DELETE FROM specialization;
