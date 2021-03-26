@@ -8,7 +8,7 @@ const Select = (props) => {
     const styleVersion = "select-" + version;
 
     function MakeItem(x) {
-        return <option>{x}</option>
+        return <option key={x}>{x}</option>
     }
 
     return (
@@ -18,4 +18,4 @@ const Select = (props) => {
     );
 };
 
-export default Select;
+export {Select};

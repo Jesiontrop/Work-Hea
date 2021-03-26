@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Button from "./Button";
-import SearchField from "./SearchField";
+import {Button} from "./Button";
+import {SearchField} from "./SearchField";
 import styles from "./Index.module.scss";
 
-class Index extends React.Component {
+class App extends React.Component {
     constructor(props) {
         super(props);
         this.options = ["organization", "offer"];
@@ -33,4 +33,6 @@ class Index extends React.Component {
     }
 }
 
-ReactDOM.render(<Index />, document.getElementById("root"));
+export default App;
+
+ReactDOM.render(<App />, document.getElementById("root"));

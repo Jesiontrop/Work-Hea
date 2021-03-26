@@ -1,0 +1,42 @@
+{
+  "name": "work-hea",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Jesiontrop/Work-Hea.git"
+  },
+  "keywords": [
+    "rest",
+    "hateoas",
+    "spring",
+    "data",
+    "react"
+  ],
+  "author": "Barkov Andrey",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Jesiontrop/Work-Hea/issues"
+  },
+  "homepage": "https://github.com/Jesiontrop/Work-Hea",
+  "dependencies": {
+    "css-loader": "^5.2.0",
+    "node-sass": "^5.0.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "rest": "^1.3.2",
+    "sass-loader": "^10.1.1",
+    "style-loader": "^2.0.0"
+  },
+  "scripts": {
+    "watch": "webpack --watch -d --display-error-details --output ./target/classes/static/built/bundle.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0"
+  }
+}
