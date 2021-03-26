@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Select.module.scss";
+import styles from "../styles/Select.module.scss";
 
 const Select = (props) => {
     let version = "main";

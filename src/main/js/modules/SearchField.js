@@ -1,7 +1,7 @@
 import React from "react";
 import {Button} from "./Button";
 import {Select} from "./Select";
-import styles from "./SearchField.module.scss";
+import styles from "../styles/SearchField.module.scss";
 
 class SearchField extends React.Component {
     constructor(props) {

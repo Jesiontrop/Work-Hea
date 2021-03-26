@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {Button} from "./Button";
-import {SearchField} from "./SearchField";
-import styles from "./Index.module.scss";
+import {Button} from "./modules/Button";
+import {SearchField} from "./modules/SearchField";
+import styles from "./styles/Index.module.scss";
 
 class App extends React.Component {
     constructor(props) {
