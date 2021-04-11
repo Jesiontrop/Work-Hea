@@ -31,6 +31,13 @@
   @extend .button-main;
   border-radius: 0 15px 15px 0;
 }
+.button-main-second {
+  .text {
+    @include roboto-24-regular;
+    color: $black;
+    text-align: center;
+  }
+}
 .button-second {
   @extend %button;
   width: 120px;
