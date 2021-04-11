@@ -7,7 +7,7 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.options = ["organization", "offer"];
-        this.grayColor = {background: "#BDBDBD"}
+        this.grayColor = {background: "#828282"}
     }
 
     render() {
