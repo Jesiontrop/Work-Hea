@@ -20,6 +20,11 @@
   font-size: 36px;
 }
 
+@mixin roboto-24-regular {
+  @extend %roboto-regular;
+  font-size: 24px;
+}
+
 @mixin roboto-18-regular {
   @extend %roboto-regular;
   font-size: 18px;
